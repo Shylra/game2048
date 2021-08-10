@@ -54,19 +54,36 @@ public class Grille {
 	}
 	
 	public void bas() {
-		for (int k = 0; k < 3; k++) {
-			for (int i = 0; i < 4; i++) {
-				for (int j = 0; j < 4; j++) {
-					if (this.map[i][j] != 0 && i != 3) {
-						if (this.map[i+1][j] == 0) {
-							this.map[i+1][j] = this.map[i][j];
-							this.map[i][j] = 0;
+		int l;
+		for (int i = 3; i >= 0; i--) {
+			for (int j = 0; j < 4; j++) {
+				if (this.map[i][j] != 0 && i > 0) {
+					for (int k = i-1; k >= 0; k--) {
+						if (this.map[k][j] != 0) {
+							if (this.map[i][j] == this.map[k][j]) {
+								this.map[i][j] *= 2;
+								this.map[k][j] = 0;
+							}
+							k = -1;
 						}
 					}
 				}
 			}
 		}
-		//fusion
+		for (int i = 3; i >= 0; i--) {
+			l = i;
+			for (int j = 0; j < 4; j++) {
+				if (this.map[i][j] != 0) {
+					for (int k = i+1; k < 4; k++) {
+						if (this.map[k][j] == 0) {
+							this.map[k][j] = this.map[l][j];
+							this.map[l][j] = 0;
+							l = k;
+						}
+					}
+				}
+			}
+		}
 	}
 	
 	public void gauche() {
