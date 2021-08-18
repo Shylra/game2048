@@ -71,8 +71,8 @@ public class Grille {
 			}
 		}
 		for (int i = 3; i >= 0; i--) {
-			l = i;
 			for (int j = 0; j < 4; j++) {
+				l = i;
 				if (this.map[i][j] != 0) {
 					for (int k = i+1; k < 4; k++) {
 						if (this.map[k][j] == 0) {
@@ -87,9 +87,69 @@ public class Grille {
 	}
 	
 	public void gauche() {
-		
+		int l;
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				if (this.map[i][j] != 0 && j > 0) {
+					for (int k = j+1; k < 4; k++) {
+						if (this.map[i][k] != 0) {
+							if (this.map[i][j] == this.map[i][k]) {
+								this.map[i][j] *= 2;
+								this.map[i][k] = 0;
+							}
+							k = 4;
+						}
+					}
+				}
+			}
+		}
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				l = j;
+				if (this.map[i][j] != 0) {
+					for (int k = j-1; k >= 0; k--) {
+						if (this.map[i][k] == 0) {
+							this.map[i][k] = this.map[i][l];
+							this.map[i][l] = 0;
+							l = k;
+						}
+					}
+				}
+			}
+		}
 	}
+	
 	public void droite() {
+		int l;
+		for (int i = 0; i < 4; i++) {
+			for (int j = 3; j >= 0; j--) {
+				if (this.map[i][j] != 0 && j > 0) {
+					for (int k = j-1; k >= 0; k--) {
+						if (this.map[i][k] != 0) {
+							if (this.map[i][j] == this.map[i][k]) {
+								this.map[i][j] *= 2;
+								this.map[i][k] = 0;
+							}
+							k = -1;
+						}
+					}
+				}
+			}
+		}
+		for (int i = 0; i < 4; i++) {
+			for (int j = 3; j >= 0; j--) {
+				l = j;
+				if (this.map[i][j] != 0) {
+					for (int k = j+1; k < 4; k++) {
+						if (this.map[i][k] == 0) {
+							this.map[i][k] = this.map[i][l];
+							this.map[i][l] = 0;
+							l = k;
+						}
+					}
+				}
+			}
+		}
 	}
 	
 	public void haut() {
@@ -110,8 +170,8 @@ public class Grille {
 			}
 		}
 		for (int i = 0; i < 4; i++) {
-			l = i;
 			for (int j = 0; j < 4; j++) {
+				l = i;
 				if (this.map[i][j] != 0) {
 					for (int k = i-1; k >= 0; k--) {
 						if (this.map[k][j] == 0) {
