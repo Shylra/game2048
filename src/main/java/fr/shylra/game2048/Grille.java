@@ -90,7 +90,7 @@ public class Grille {
 		int l;
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				if (this.map[i][j] != 0 && j > 0) {
+				if (this.map[i][j] != 0 && j < 3) {
 					for (int k = j+1; k < 4; k++) {
 						if (this.map[i][k] != 0) {
 							if (this.map[i][j] == this.map[i][k]) {
