@@ -53,7 +53,8 @@ public class Grille {
 		}
 	}
 	
-	public void bas() {
+	public boolean bas() {
+		boolean change = false;
 		int l;
 		for (int i = 3; i >= 0; i--) {
 			for (int j = 0; j < 4; j++) {
@@ -63,6 +64,7 @@ public class Grille {
 							if (this.map[i][j] == this.map[k][j]) {
 								this.map[i][j] *= 2;
 								this.map[k][j] = 0;
+								change = true;
 							}
 							k = -1;
 						}
@@ -79,14 +81,17 @@ public class Grille {
 							this.map[k][j] = this.map[l][j];
 							this.map[l][j] = 0;
 							l = k;
+							change = true;
 						}
 					}
 				}
 			}
 		}
+		return (change);
 	}
 	
-	public void gauche() {
+	public boolean gauche() {
+		boolean change = false;
 		int l;
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
@@ -96,6 +101,7 @@ public class Grille {
 							if (this.map[i][j] == this.map[i][k]) {
 								this.map[i][j] *= 2;
 								this.map[i][k] = 0;
+								change = true;
 							}
 							k = 4;
 						}
@@ -112,14 +118,17 @@ public class Grille {
 							this.map[i][k] = this.map[i][l];
 							this.map[i][l] = 0;
 							l = k;
+							change = true;
 						}
 					}
 				}
 			}
 		}
+		return (change);
 	}
 	
-	public void droite() {
+	public boolean droite() {
+		boolean change = false;
 		int l;
 		for (int i = 0; i < 4; i++) {
 			for (int j = 3; j >= 0; j--) {
@@ -129,6 +138,7 @@ public class Grille {
 							if (this.map[i][j] == this.map[i][k]) {
 								this.map[i][j] *= 2;
 								this.map[i][k] = 0;
+								change = true;
 							}
 							k = -1;
 						}
@@ -145,14 +155,17 @@ public class Grille {
 							this.map[i][k] = this.map[i][l];
 							this.map[i][l] = 0;
 							l = k;
+							change = true;
 						}
 					}
 				}
 			}
 		}
+		return (change);
 	}
 	
-	public void haut() {
+	public boolean haut() {
+		boolean change = false;
 		int l;
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
@@ -162,6 +175,7 @@ public class Grille {
 							if (this.map[i][j] == this.map[k][j]) {
 								this.map[i][j] *= 2;
 								this.map[k][j] = 0;
+								change = true;
 							}
 							k = 4;
 						}
@@ -178,10 +192,12 @@ public class Grille {
 							this.map[k][j] = this.map[l][j];
 							this.map[l][j] = 0;
 							l = k;
+							change = true;
 						}
 					}
 				}
 			}
 		}
+		return (change);
 	}
 }
